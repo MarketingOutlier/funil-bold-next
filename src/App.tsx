@@ -3,7 +3,7 @@ import {
   Menu, X, ChevronRight, ArrowRight,
   MonitorSmartphone, Briefcase, Megaphone,
   TrendingUp, Bot, Share2, Layers, Search, Mail, Phone,
-  Star, Plus, Minus, Zap
+  Star, Plus, Minus
 } from 'lucide-react';
 
 
@@ -296,6 +296,57 @@ export default function App() {
         .face-top    { transform: rotateX(90deg) translateZ(90px); }
         .face-bottom { transform: rotateX(-90deg) translateZ(90px); }
 
+        /* New Premium Utilities */
+        .glass-badge {
+          background: rgba(14, 14, 19, 0.5);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(201,168,76,0.15);
+          box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .hero-glow {
+          position: absolute;
+          width: 80vw;
+          height: 80vh;
+          background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+          filter: blur(80px);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+
+        .bento-card {
+          position: relative;
+          background: rgba(14, 14, 19, 0.4);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(201,168,76,0.1);
+          border-radius: 1.5rem;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(201,168,76,0.3);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.1);
+        }
+        .bento-glow {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 60%);
+          filter: blur(40px);
+          border-radius: 50%;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.6s ease;
+          mix-blend-mode: screen;
+        }
+        .bento-card:hover .bento-glow {
+          opacity: 1;
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #0A0A0F; }
@@ -350,111 +401,81 @@ export default function App() {
           )}
         </nav>
 
-        {/* ── Hero ───────────────────────────────────────────────────────── */}
-        <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-36 px-6 overflow-hidden">
-          {/* BG orbs */}
-          <FloatingOrb size={600} color="#C9A84C" top="-10%" left="40%" delay={0} />
-          <FloatingOrb size={400} color="#9ba8eb" top="50%" left="-10%" delay={1.5} />
-          <FloatingOrb size={300} color="#C9A84C" top="70%" left="75%" delay={3} />
+        {/* ── Hero Premium ───────────────────────────────────────────────────────── */}
+        <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
+          {/* Ambient Glow & Orbs */}
+          <div className="hero-glow" />
+          <FloatingOrb size={500} color="#C9A84C" top="-10%" left="15%" delay={0} />
+          <FloatingOrb size={400} color="#9ba8eb" top="40%" left="70%" delay={1.5} />
+          <FloatingOrb size={600} color="#E6C364" top="80%" left="30%" delay={3} />
 
-          {/* Grid lines */}
-          <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.03 }}>
+          {/* Grid lines micro-texture */}
+          <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.04 }}>
             <div style={{
               backgroundImage: 'repeating-linear-gradient(0deg,rgba(201,168,76,1) 0,rgba(201,168,76,1) 1px,transparent 0,transparent 50%),repeating-linear-gradient(90deg,rgba(201,168,76,1) 0,rgba(201,168,76,1) 1px,transparent 0,transparent 50%)',
               backgroundSize: '80px 80px', width: '100%', height: '100%',
+              maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)'
             }} />
           </div>
 
-          <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center z-10">
-            {/* Left — copy */}
-            <div>
-              <div className="hero-anim mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full"
-                style={{ border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.05)' }}>
-                <Zap className="w-3.5 h-3.5" style={{ color: '#C9A84C' }} />
-                <span className="text-xs font-semibold tracking-widest uppercase font-manrope" style={{ color: '#C9A84C' }}>
-                  VOCÊ ESTÁ A UM FUNIL DA ESCALA PREVISÍVEL
-                </span>
+          <div className="relative max-w-5xl mx-auto flex flex-col items-center text-center z-10">
+            
+            {/* Top Badge */}
+            <div className="hero-anim mb-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full"
+              style={{ border: '1px solid rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.08)', backdropFilter: 'blur(10px)' }}>
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E6C364] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#C9A84C]"></span>
+              </span>
+              <span className="text-xs font-bold tracking-[0.2em] uppercase font-manrope" style={{ color: '#E6C364' }}>
+                Chega de Métricas de Vaidade
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="hero-anim font-epilogue text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight mb-8">
+              Nós construímos <br className="hidden md:block" />
+              <span className="text-gold-gradient italic font-epilogue">Máquinas de Lucro</span> B2B.
+            </h1>
+
+            {/* Subheadline */}
+            <p className="hero-anim text-lg md:text-xl leading-relaxed mb-12 font-manrope" style={{ color: '#a09488', maxWidth: '680px' }}>
+              Transformamos operações comerciais estagnadas em ecossistemas agressivos de alta conversão. Usamos inteligência artificial, tráfego de precisão e funis impossíveis de serem ignorados.
+            </p>
+
+            {/* CTAs */}
+            <div className="hero-anim flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto">
+              <button className="btn-primary h-14 md:h-16 px-10 rounded-lg text-base md:text-lg font-manrope font-bold flex items-center justify-center gap-2 group">
+                Agendar Diagnóstico C-Level
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="btn-ghost h-14 md:h-16 px-10 rounded-lg text-base md:text-lg flex items-center justify-center gap-2">
+                Ver Casos de Sucesso
+              </button>
+            </div>
+
+            {/* Floating Glass Badges (Parallax simulated in CSS or GSAP) */}
+            <div className="hero-3d-obj absolute hidden lg:flex glass-badge rounded-2xl px-6 py-4 items-center gap-4" style={{ top: '20%', left: '-10%', transform: 'rotate(-4deg)' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(201,168,76,0.1)' }}>
+                <TrendingUp className="w-6 h-6" style={{ color: '#C9A84C' }} />
               </div>
-
-              <h1 className="hero-anim font-epilogue text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-6">
-                Pare de patrocinar a concorrência.<br className="hidden lg:block"/> Construa sua{' '}
-                <span className="text-gold-gradient italic font-epilogue">Máquina de Vendas.</span>
-              </h1>
-
-              <p className="hero-anim text-lg leading-relaxed mb-10 font-manrope" style={{ color: '#a09488', maxWidth: '500px' }}>
-                Transformamos operações comerciais travadas em ecossistemas de alta conversão usando IA, 
-                tráfego de precisão e funis automatizados. Onde outras agências vendem ilusão de "likes", nós entregamos lucro no seu caixa.
-              </p>
-
-              <div className="hero-anim flex flex-col sm:flex-row gap-4">
-                <button className="btn-primary h-14 px-8 rounded-md text-base font-manrope font-bold">
-                  Quero Agendar Meu Diagnóstico Gratuito
-                </button>
-                <button className="btn-ghost h-14 px-8 rounded-md text-base flex items-center justify-center gap-2">
-                  Como a máquina funciona? <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Stats row */}
-              <div className="hero-anim mt-14 flex gap-10">
-                {[['4x','ROI médio em 6 meses'],['72h','Primeiros leads'],['50+','Clientes ativos']].map(([val,label]) => (
-                  <div key={val}>
-                    <div className="text-2xl font-black text-gold-gradient font-epilogue">{val}</div>
-                    <div className="text-xs mt-1 font-manrope" style={{ color: '#99907e' }}>{label}</div>
-                  </div>
-                ))}
+              <div className="text-left">
+                <div className="text-xl font-black font-epilogue" style={{ color: '#E4E1E9' }}>ROAS +340%</div>
+                <div className="text-xs font-manrope" style={{ color: '#a09488' }}>Escala Preditiva</div>
               </div>
             </div>
 
-            {/* Right — 3D Cube Visual */}
-            <div className="hero-3d-obj hidden lg:flex items-center justify-center relative" style={{ minHeight: '420px' }}>
-              {/* Outer rings */}
-              <div className="absolute rounded-full" style={{
-                width: 380, height: 380,
-                border: '1px solid rgba(201,168,76,0.12)',
-                left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
-                animation: 'rotateSlow 25s linear infinite',
-              }}>
-                <div className="absolute w-3 h-3 rounded-full" style={{ background: '#C9A84C', top: -6, left: '50%', transform: 'translateX(-50%)', boxShadow: '0 0 12px #C9A84C' }} />
+            <div className="hero-3d-obj absolute hidden lg:flex glass-badge rounded-2xl px-6 py-4 items-center gap-4" style={{ bottom: '15%', right: '-5%', transform: 'rotate(3deg)' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(201,168,76,0.1)' }}>
+                <Bot className="w-6 h-6" style={{ color: '#C9A84C' }} />
               </div>
-              <div className="absolute rounded-full" style={{
-                width: 280, height: 280,
-                border: '1px solid rgba(201,168,76,0.08)',
-                left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
-                animation: 'rotateSlow 18s linear infinite reverse',
-              }}>
-                <div className="absolute w-2 h-2 rounded-full" style={{ background: '#9ba8eb', bottom: -4, left: '50%', transform: 'translateX(-50%)', boxShadow: '0 0 8px #9ba8eb' }} />
+              <div className="text-left">
+                <div className="text-xl font-black font-epilogue" style={{ color: '#E4E1E9' }}>+150 Leads/mês</div>
+                <div className="text-xs font-manrope" style={{ color: '#a09488' }}>Automação IA</div>
               </div>
-
-              {/* Glass panel behind cube */}
-              <div className="glass-card rounded-3xl" style={{
-                width: 240, height: 240, position: 'relative', zIndex: 2,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                animation: 'pulseGold 4s ease-in-out infinite',
-              }}>
-                {/* Cube */}
-                <div className="cube-scene" style={{ width: 180, height: 180, position: 'relative' }}>
-                  <div className="cube" style={{ position: 'relative' }}>
-                    {['front','back','left','right','top','bottom'].map(f => (
-                      <div key={f} className={`cube-face face-${f}`}>
-                        <Zap className="w-8 h-8 opacity-40" style={{ color: '#E6C364' }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating badges */}
-              {[
-                { label: 'ROAS +340%', sub: 'Meta & Google Ads', top: '5%', right: '0%' },
-                { label: '+150 Leads/mês', sub: 'Funil Automatizado', bottom: '5%', left: '-5%' },
-              ].map(({ label, sub, ...pos }) => (
-                <div key={label} className="absolute glass-card rounded-xl px-4 py-3" style={{ ...pos, zIndex: 3 }}>
-                  <div className="text-sm font-bold font-epilogue" style={{ color: '#E6C364' }}>{label}</div>
-                  <div className="text-xs font-manrope" style={{ color: '#99907e' }}>{sub}</div>
-                </div>
-              ))}
             </div>
+
           </div>
         </section>
 
@@ -527,54 +548,90 @@ export default function App() {
               </button>
             </div>
 
-            {/* 4 Cards horizontais — igual ao Stitch */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {[
-                { icon: Megaphone, title: "Tráfego Pago",    desc: "Chega de cliques vazios. Aplicamos escalabilidade preditiva via algoritmos de performance em Meta, Google e TikTok Ads com um foco obsessivo: aumentar o seu ROAS e abaixar o Custo de Aquisição (CAC)." },
-                { icon: MonitorSmartphone, title: "Páginas de Alta Conversão", desc: "Sites não servem apenas para existir na web, servem para vender. Criamos experiências imersivas com neuromarketing, design autoral agressivo e carregamento ultrarrápido para que você não perca tempo com leads impacientes." },
-                { icon: Layers, title: "Automação CRM",               desc: "A fortuna de qualquer negócio está no follow-up. Fechamos o ciclo de vendas transformando dados frios em relacionamentos e negócios altamente rentáveis. Ninguém mais fica pra trás no funil." },
-                { icon: Bot,   title: "Inteligência Artificial & Agentes",       desc: "Seus custos operacionais despencam enquanto a velocidade de conversão voa. Implementamos agentes automatizados cruzando 24h por dia para qualificar, atender e fechar sem precisar triplicar a equipe humana." },
-              ].map((svc, i) => (
-                <TiltCard key={i} className="svc-card">
-                  <div
-                    className="relative overflow-hidden rounded-2xl p-7 flex flex-col gap-5 h-full"
-                    style={{
-                      background: 'linear-gradient(145deg, #17171F 0%, #111118 60%, #0D0D11 100%)',
-                      border: '1px solid rgba(201,168,76,0.1)',
-                      minHeight: '260px',
-                    }}
-                  >
-                    {/* Watermark number */}
-                    <div
-                      className="absolute top-4 right-5 font-epilogue font-black select-none pointer-events-none"
-                      style={{ fontSize: '5rem', lineHeight: 1, color: 'rgba(201,168,76,0.04)' }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
+            {/* Bento Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                    {/* Ícone com plataforma 3D */}
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: 'linear-gradient(145deg, #1E1C0F, #111118)',
-                        border: '1px solid rgba(201,168,76,0.22)',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 20px rgba(201,168,76,0.08)',
-                      }}
-                    >
-                      <svc.icon className="w-7 h-7" style={{ color: '#C9A84C' }} />
-                    </div>
-
-                    {/* Texto */}
-                    <div className="relative z-10 mt-auto">
-                      <h3 className="font-epilogue text-lg font-bold mb-2" style={{ color: '#E4E1E9' }}>{svc.title}</h3>
-                      <p className="font-manrope text-sm leading-relaxed" style={{ color: '#706860' }}>{svc.desc}</p>
-                    </div>
-
-                    {/* linha gold no bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent)' }} />
+              {/* Bento Card 1: Tráfego (Largo) */}
+              <TiltCard className="bento-card lg:col-span-2 group flex flex-col justify-between p-8 md:p-10 min-h-[360px]">
+                <div className="bento-glow" style={{ bottom: '-50px', right: '-50px' }} />
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-700">
+                  <Megaphone className="w-48 h-48" style={{ color: '#C9A84C' }} />
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6" style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)' }}>
+                    <span className="w-2 h-2 rounded-full bg-[#E6C364] animate-pulse" />
+                    <span className="text-[10px] font-bold tracking-widest text-[#E6C364] uppercase font-manrope">Performance Ads</span>
                   </div>
-                </TiltCard>
-              ))}
+                  
+                  <h3 className="font-epilogue text-3xl md:text-5xl font-black mb-4 leading-tight text-[#E4E1E9]">
+                    Data-Driven <br/><span className="text-gold-gradient italic">Acquisition.</span>
+                  </h3>
+                  <p className="font-manrope text-base leading-relaxed max-w-lg" style={{ color: '#a09488' }}>
+                    Abandonamos o "boost" e aplicamos arquitetura de dados e tráfego direto preditivo em Meta e Google. Focamos obsessivamente em abaixar seu Custo de Aquisição e maximizar a margem de lucro.
+                  </p>
+                </div>
+
+                <div className="relative z-10 mt-8 flex flex-wrap items-center gap-3 border-t pt-6" style={{ borderColor: 'rgba(201,168,76,0.1)' }}>
+                  <div className="bg-[#111118] border border-[#23212F] px-4 py-2 rounded-lg text-sm font-bold font-epilogue text-[#E6C364]">+300% ROAS</div>
+                  <div className="bg-[#111118] border border-[#23212F] px-4 py-2 rounded-lg text-sm font-bold font-epilogue text-[#a09488]">CPA Otimizado</div>
+                  <div className="bg-[#111118] border border-[#23212F] px-4 py-2 rounded-lg text-sm font-bold font-epilogue text-[#a09488]">LTV Growth</div>
+                </div>
+              </TiltCard>
+
+              {/* Bento Card 2: Páginas (Vertical) */}
+              <TiltCard className="bento-card lg:col-span-1 group flex flex-col justify-between p-8 md:p-10 min-h-[360px]">
+                <div className="bento-glow" style={{ top: '-100px', left: '-100px' }} />
+                
+                <div className="relative z-10 mb-8">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(145deg, #1E1C0F, #111118)', border: '1px solid rgba(201,168,76,0.3)', boxShadow: '0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 20px rgba(201,168,76,0.15)' }}>
+                    <MonitorSmartphone className="w-8 h-8 text-[#C9A84C]" />
+                  </div>
+                   <h3 className="font-epilogue text-2xl md:text-3xl font-black mb-3 text-[#E4E1E9]">
+                    Páginas de Alta Conversão
+                  </h3>
+                  <p className="font-manrope text-sm leading-relaxed" style={{ color: '#a09488' }}>
+                    Seu site não é um panfleto estético. É seu melhor vendedor. Usamos design premium, neuro-copy e carregamento super otimizado para não perder 1% dos leads entrantes.
+                  </p>
+                </div>
+                
+                <div className="relative z-10 text-[11px] uppercase tracking-[0.2em] font-bold text-[#706860] border-t border-[#23212F] pt-4">
+                  Experiências Imersivas
+                </div>
+              </TiltCard>
+
+              {/* Bento Card 3: Automação (Wide Bottom) */}
+              <TiltCard className="bento-card lg:col-span-3 group flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 min-h-[260px]">
+                <div className="bento-glow" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '500px', height: '500px', opacity: 0, transition: 'opacity 1s' }} />
+                <style>{`.bento-card:hover .bento-glow { opacity: 0.8 !important; }`}</style>
+                
+                <div className="md:w-[55%] relative z-10">
+                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4" style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)' }}>
+                    <Bot className="w-3.5 h-3.5 text-[#E6C364]" />
+                    <span className="text-[10px] font-bold tracking-widest text-[#E6C364] uppercase font-manrope">Agentes IA & Automação</span>
+                  </div>
+                  <h3 className="font-epilogue text-3xl md:text-5xl font-black mb-4 text-[#E4E1E9]">
+                    Operações Autônomas <span className="text-gold-gradient italic">24/7.</span>
+                  </h3>
+                  <p className="font-manrope text-base leading-relaxed" style={{ color: '#a09488' }}>
+                    Não adianta trazer 1.000 leads se você leva 4 horas para responder. Fechamos os gargalos de retenção criando CRMs inteligentes, agentes qualificados em IA e follow-ups brutais de Email e WhatsApp.
+                  </p>
+                </div>
+
+                <div className="md:w-[40%] w-full flex flex-col gap-3 relative z-10">
+                   {[
+                     { l: 'Qualificação Instantânea', v: 'IA' },
+                     { l: 'Recuperação de Vendas', v: 'Auto' },
+                     { l: 'Follow-ups Persuasivos', v: 'N8N' }
+                   ].map(tag => (
+                     <div key={tag.l} className="flex items-center justify-between px-5 py-3 rounded-xl bg-[#0D0D11] border border-[#23212F] group-hover:border-[#C9A84C]/30 transition-colors">
+                       <span className="text-sm font-bold font-manrope text-[#d0c5b2]">{tag.l}</span>
+                       <span className="text-xs tracking-widest uppercase font-epilogue text-[#C9A84C] opacity-70">{tag.v}</span>
+                     </div>
+                   ))}
+                </div>
+              </TiltCard>
+
             </div>
 
             {/* Ticker marquee */}
