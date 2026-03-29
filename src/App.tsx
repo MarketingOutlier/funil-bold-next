@@ -3,7 +3,7 @@ import {
   Menu, X, ChevronRight, ArrowRight,
   MonitorSmartphone, Briefcase, Megaphone,
   TrendingUp, Bot, Share2, Layers, Search, Mail, Phone,
-  Star, Plus, Minus, PieChart, DollarSign, ShieldAlert, ShieldCheck, CheckCircle
+  Star, Plus, Minus, ShieldCheck, CheckCircle
 } from 'lucide-react';
 
 
