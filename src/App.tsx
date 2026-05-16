@@ -382,9 +382,9 @@ export default function App() {
             </div>
 
             <div className="hidden md:flex">
-              <button className="btn-primary px-6 py-2.5 rounded-md text-sm flex items-center gap-1.5">
+              <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary px-6 py-2.5 rounded-md text-sm flex items-center gap-1.5">
                 Agendar Call <ChevronRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
 
             <button className="md:hidden" style={{ color: '#E4E1E9' }} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -398,7 +398,7 @@ export default function App() {
               {[['#solucoes','O Arsenal'],['#metodo','O Método'],['#cases','Resultados'],['#depoimentos','Tribu'],['#faq','F.A.Q.']].map(([href,label]) => (
                 <a key={href} href={href} className="text-lg font-medium" style={{ color: '#d0c5b2' }} onClick={() => setMobileMenuOpen(false)}>{label}</a>
               ))}
-              <button className="btn-primary w-full py-3 rounded-md text-sm mt-2">Agendar Call</button>
+              <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary w-full py-3 rounded-md text-sm mt-2 block text-center">Agendar Call</a>
             </div>
           )}
         </nav>
@@ -448,10 +448,10 @@ export default function App() {
 
             {/* CTAs */}
             <div className="hero-anim flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto">
-              <button className="btn-primary h-14 md:h-16 px-10 rounded-lg text-base md:text-lg font-manrope font-bold flex items-center justify-center gap-2 group">
+              <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary h-14 md:h-16 px-10 rounded-lg text-base md:text-lg font-manrope font-bold flex items-center justify-center gap-2 group">
                 Agendar Diagnóstico C-Level
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <button className="btn-ghost h-14 md:h-16 px-10 rounded-lg text-base md:text-lg flex items-center justify-center gap-2">
                 Ver Casos de Sucesso
               </button>
@@ -545,9 +545,9 @@ export default function App() {
                   Um funil quebrado não sobrevive apenas com "anúncios". Nós armamos a sua estrutura com absolutamente tudo o que você precisa para dominar o nicho e obliterar a concorrência.
                 </p>
               </div>
-              <button className="btn-primary self-start md:self-auto h-12 px-7 rounded-md text-sm font-manrope font-bold whitespace-nowrap">
+              <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary self-start md:self-auto h-12 px-7 rounded-md text-sm font-manrope font-bold whitespace-nowrap inline-flex items-center">
                 Quero montar o meu Arsenal <ChevronRight className="inline w-4 h-4 ml-1" />
-              </button>
+              </a>
             </div>
 
             {/* Bento Grid */}
@@ -735,10 +735,10 @@ export default function App() {
 
             {/* Final CTA of Process */}
             <div className="mt-32 text-center">
-               <button className="btn-primary px-10 py-5 rounded-lg text-lg font-black group">
+               <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary px-10 py-5 rounded-lg text-lg font-black group inline-flex items-center">
                  Agendar Engenharia de Crescimento
                  <ArrowRight className="inline w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-               </button>
+               </a>
             </div>
           </div>
         </section>
@@ -936,10 +936,10 @@ export default function App() {
               Não somos uma agência de "posts". Somos uma boutique de engenharia de caixa. Se o seu negócio tem base sólida e faturou no mínimo R$ 20k no último mês, aplique agora para o Diagnóstico Tático.
             </p>
 
-            <button className="btn-primary btn-pulse h-20 px-16 rounded-xl text-xl font-epilogue font-black transition-all transform hover:scale-105 active:scale-95 flex items-center gap-4 mx-auto">
+            <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary btn-pulse h-20 px-16 rounded-xl text-xl font-epilogue font-black transition-all transform hover:scale-105 active:scale-95 flex items-center gap-4 mx-auto">
               APLICAR PARA O DIAGNÓSTICO ESTRATÉGICO
               <ChevronRight className="w-6 h-6" />
-            </button>
+            </a>
 
             <div className="mt-12 flex items-center justify-center gap-8 text-[10px] font-black tracking-widest text-zinc-600 uppercase">
                <div className="flex items-center gap-2"> <ShieldCheck className="w-4 h-4 text-[#10b981]" /> PRIVACIDADE GARANTIDA</div>
@@ -1078,10 +1078,10 @@ export default function App() {
                   <div className="flex items-center gap-2 text-[10px] font-black text-zinc-600 tracking-widest">
                     <ShieldCheck className="w-4 h-4 text-[#10b981]" /> DADOS AUDITADOS PELA BOLD NEXT
                   </div>
-                  <button className="btn-primary px-8 py-4 rounded-xl text-xs font-black w-full md:w-auto">
+                  <a href="https://tally.so/r/WOK5ev" target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-4 rounded-xl text-xs font-black w-full md:w-auto inline-flex items-center justify-center">
                     QUERO RESULTADOS SIMILARES
                     <ArrowRight className="inline w-4 h-4 ml-2" />
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             </motion.div>
